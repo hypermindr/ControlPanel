@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="PopcornServer" version="3.0">
+  <display-name>controlpanel</display-name>
+  <servlet>
+    <servlet-name>reporting</servlet-name>
+    <servlet-class>
+			com.hypermindr.controlpanel.ReportingServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>reportconfig</servlet-name>
+    <servlet-class>
+			com.hypermindr.controlpanel.ReportConfigServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>reportconfig</servlet-name>
+    <url-pattern>/paginas/funcoes/reportconfig</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>reporting</servlet-name>
+    <url-pattern>/paginas/funcoes/reporting</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>
+      index.html
+    </welcome-file>
+  </welcome-file-list>
+  
+  <servlet> 
+      <servlet-name>Faces Servlet</servlet-name> 
+      <servlet-class>javax.faces.webapp.FacesServlet</servlet-class> 
+      <load-on-startup>0</load-on-startup> 
+   </servlet>
+
+   <servlet-mapping> 
+      <servlet-name>Faces Servlet</servlet-name> 
+      <url-pattern>/faces/*</url-pattern> 
+   </servlet-mapping> 
+  
+	
+	<context-param>
+    <param-name>facelets.REFRESH_PERIOD</param-name>
+    <param-value>2</param-value>
+  </context-param>
+  <context-param>
+    <param-name>facelets.DEVELOPMENT</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>com.sun.faces.validateXml</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  
+  <filter> 
+	   <display-name>RichFaces Filter</display-name> 
+	   <filter-name>richfaces</filter-name> 
+	   <filter-class>org.ajax4jsf.Filter</filter-class> 
+	</filter> 
+	
+	
+	<filter-mapping> 
+	   <filter-name>richfaces</filter-name> 
+	   <servlet-name>Faces Servlet</servlet-name>
+	   <dispatcher>REQUEST</dispatcher>
+	   <dispatcher>FORWARD</dispatcher>
+	   <dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	
+	<context-param> 
+		<description> 
+		State saving method: "client" or "server" (= default) See 
+		JSF Specification 2.5.2 
+		</description> 
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name> 
+		<param-value>server</param-value> 
+	</context-param>
+	
+	<session-config>
+        <session-timeout>10000</session-timeout>
+    </session-config>
+</web-app>

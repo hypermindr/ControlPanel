@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0093)http://192.168.0.54:8080/controlpanel/reportconfig?interval=1&server=Todos&method=Filter+HTTP -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Control Panel</title>
+<style type="text/css">
+  body {background-color:white;margin:0px;padding:0px;}
+  #left,#right {width:10%;margin:0px;padding:0px;}
+  #left,#center,#right {float:left;}
+  #center {width:80%;}
+  #top {height:150px;}
+  #main {height:600px;background-color:white;}
+</style>
+</head>
+<body>
+<div id="left">&nbsp;</div>
+<div id="center">
+  <div id="top">
+
+
+
+
+
+<br>  
+<div style="float: left;" id="logo">
+<img src="./Control Panelhtml_files/logo.svg">
+</div>
+<div style="float: left;" id="menu">
+<p>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Quadro de Alertas</b>
+	</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea style="overflow:scroll" rows="3" cols="100">
+</textarea>
+</div>
+
+
+</div>
+  <div id="main">
+
+
+
+
+
+
+
+
+
+  
+  	<script type="text/javascript" src="./Control Panelhtml_files/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="./Control Panelhtml_files/jsapi"></script>
+    <script type="text/javascript">
+	      google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawVisualization);
+		  var data;
+		  var chart;
+
+         function drawVisualization() {
+      	 data = new google.visualization.DataTable();
+			 data.addColumn('datetime', 'ID'); 
+			 data.addColumn('number', 'Desvio padrão');
+			 data.addColumn('number', 'Tempo total decorrido');
+			 data.addColumn({type: 'string', role: 'annotationText', p: {html:true}});
+			 data.addRows([
+			 ]);
+
+
+	        //data.setColumnProperty(3, 'role', 'tooltip');
+        	//var showEvery = parseInt(data.getNumberOfRows() / 1);
+            var options = {
+            	    title : 'Tempo por chamada',
+            	    vAxis: {title: "Milisegundos",viewWindow: {min:0}},
+            	    hAxis: {title: "Hora"},
+            	    seriesType: "line",
+            	    series: {5: {type: "line"}},
+            	    lineWidth: 2, pointSize: 3,
+            	    tooltip: {isHtml: true, trigger: 'both'},
+            	    curveType: 'none',
+            	    trendlines: {
+                        1: {labelInLegend: 'Tendência', 
+                            color: 'green',
+                          type: 'polynomial',
+                          degree: 3,
+                          showR2: false,
+                          visibleInLegend: true,
+                          tooltip: false
+                        }
+                      },
+                      interpolateNulls: true,
+                      is3D: true
+                      
+            	  };
+        
+            
+            chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+	
+
+			if (data.getNumberOfRows() > 0 ) {
+         		chart.draw(data, options);
+            	google.visualization.events.addListener(chart, 'select', onSelection);
+			}else{
+				$('#message').html("<b> Não existem dados para mostrar. </b>");
+						
+				}
+		
+            function onSelection () {
+                var
+                	item, 
+                	selection = chart.getSelection();
+
+                if ((selection instanceof Array) && (selection.length > 0)) {
+                    
+                    item = selection[0];
+
+                    if (item.row && (typeof item.row == 'number')) {
+                    	$('#tooltip_div').html(data.getValue(item.row, 3));
+                    }else{
+                    	$('#tooltip_div').html("");   
+					}
+                }else{
+                	$('#tooltip_div').html("");
+                }
+            }
+           
+         }
+
+         function functionSubmit() {
+             document.querySelectorAll("input[type=submit]")[0].click();
+         }
+      </script><script src="./Control Panelhtml_files/saved_resource" type="text/javascript"></script><link href="./Control Panelhtml_files/ui+pt_BR.css" type="text/css" rel="stylesheet"><script src="./Control Panelhtml_files/format+pt_BR,default+pt_BR,ui+pt_BR,corechart+pt_BR.I.js" type="text/javascript"></script>
+   
+    
+    
+    <div align="left" id="chart_div" style="width: 1700px; height: 700px; position: relative;"> 
+    <div style="float: left;" id="message"><b> Não existem dados para mostrar. </b></div>
+    </div>
+    <form name="updateGraph" action="http://192.168.0.54:8080/controlpanel/reportconfig">
+    	
+    	<div style="padding-left: 200px;">
+
+    		<p>
+    			Intervalo (horas) :
+    			
+    			<select id="interval" name="interval" onchange="functionSubmit()">
+    				
+    					<option value="1" selected="">1</option>
+    				
+    					<option value="2">2</option>
+    				
+    					<option value="4">4</option>
+    				
+    					<option value="6">6</option>
+    				
+    					<option value="8">8</option>
+    				
+    					<option value="12">12</option>
+    				
+    					<option value="24">24</option>
+    				
+    					<option value="36">36</option>
+    				
+    					<option value="48">48</option>
+    				
+    					<option value="72">72</option>
+    				
+    			</select>
+    			
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Servers:
+    			<select id="server" name="server" onchange="functionSubmit()">
+    				
+    					<option value="Todos" selected="">Todos</option>
+    				
+    					<option value="ricardo-work">ricardo-work</option>
+    				
+    			</select>
+    			
+    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Metodos:
+    			<select id="method" name="method" onchange="functionSubmit()">
+    				
+    					<option value="Filter HTTP" selected="">Filter HTTP</option>
+    				
+    					<option value="Todos">Todos</option>
+    				
+    					<option value="track_activity">track_activity</option>
+    				
+    			</select>
+    			
+    			
+    			
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Atualizar">
+				 
+    </p>
+   
+   </div>
+    </form>
+    <div title="Detalhes" id="tooltip_div" style="width: 1700px; height: 700px;"> 
+    
+    
+    
+    </div>
+    
+  
+  
+
+
+
+
+</div>
+  <div id="bottom"></div>
+</div>
+<div id="right">&nbsp;</div>
+
+</body></html>

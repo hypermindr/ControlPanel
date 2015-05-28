@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Call milliseconds'],
+          [ 8,      12],
+          [ 4,      5.5],
+          [ 11,     14],
+          [ 4,      5],
+          [ 3,      3.5],
+          [ 6.5,    7]
+        ]);
+        
+        var options = {'title':'API Calls reported by application Logs',
+        		 hAxis: {title: 'Age', minValue: 0, maxValue: 15},
+                 vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+                 legend: 'none'
+               };
+
+
+        var chart = new  google.visualization.ScatterChart(document.getElementById('chart_api_avg'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_api_avg"></div>
+  </body>
+</html>

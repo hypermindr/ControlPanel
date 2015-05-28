@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+
+function drawChart() {
+	  var dataTable = new google.visualization.DataTable();
+	  dataTable.addColumn('string', 'Year');
+	  dataTable.addColumn('number', 'Sales');
+	  // A column for custom tooltip content
+	  dataTable.addColumn({type: 'string', role: 'tooltip'});
+	  dataTable.addRows([
+	    ['2010', 600,'$600K in our first year!'],
+	    ['2011', 1500, 'Sunspot activity made this our best year ever!'],
+	    ['2012', 800, '$800K in 2012.'],
+	    ['2013', 1000, '$1M in sales last year.']
+	  ]);
+
+	  var options = {
+	    tooltip: {isHtml: true},
+	    legend: 'none'
+	  };
+	  var chart = new google.visualization.ColumnChart(document.getElementById('col_chart_html_tooltip'));
+	  chart.draw(dataTable, options);
+	}
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>

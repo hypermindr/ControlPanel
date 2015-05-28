@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN" "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+<faces-config xmlns="http://java.sun.com/JSF/Configuration">
+<application>
+	<message-bundle>resources</message-bundle>
+	
+</application>
+
+
+<managed-bean>
+    <managed-bean-name>loginBean</managed-bean-name>
+    <managed-bean-class>com.hypermindr.controlpanel.entities.Login</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  
+ <managed-bean>
+    <managed-bean-name>endpointBean</managed-bean-name>
+    <managed-bean-class>com.hypermindr.controlpanel.entities.Endpoint</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  
+ 
+ <managed-bean>
+    <managed-bean-name>tailerBean</managed-bean-name>
+    <managed-bean-class>com.hypermindr.controlpanel.entities.Tailer</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  
+ <managed-bean>
+    <managed-bean-name>mongoProcessorBean</managed-bean-name>
+    <managed-bean-class>com.hypermindr.controlpanel.MongoProcessor</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+   
+ <managed-bean>
+    <managed-bean-name>datasourceBean</managed-bean-name>
+    <managed-bean-class>com.hypermindr.controlpanel.entities.Datasource</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  
+  <managed-bean>
+    <managed-bean-name>utilBean</managed-bean-name>
+    <managed-bean-class>com.hypermindr.controlpanel.bean.util.UtilBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+
+
+<navigation-rule>
+	    <from-view-id>/paginas/index.jsp</from-view-id>
+	    <navigation-case>
+	      <from-outcome>login</from-outcome>
+	      <to-view-id>/paginas/main.jsp</to-view-id>
+	    </navigation-case>
+	    <navigation-case>
+	      <from-outcome>fail</from-outcome>
+	      <to-view-id>/paginas/index.jsp</to-view-id>
+	    </navigation-case>
+</navigation-rule>
+
+  <lifecycle>
+    <phase-listener>com.hypermindr.controlpanel.web.filters.PostRedirectGetListener</phase-listener>
+</lifecycle>
+</faces-config>

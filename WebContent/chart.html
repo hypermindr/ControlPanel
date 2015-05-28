@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Kometschuh.de Tracker</title>
+    <!-- Load jQuery -->
+    <script language="javascript" type="text/javascript" 
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js">
+    </script>
+    <!-- Load Google JSAPI -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["corechart"] });
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var jsonData = $.ajax({
+                url: "http://localhost:8080/raaspanel/reporting",
+                dataType: "json",
+                async: false
+            }).responseText;
+
+            var obj = window.JSON.stringify(jsonData);
+            var data = google.visualization.arrayToDataTable(obj);
+
+            var options = {
+                title: 'Kometschuh.de Trackerdaten'
+            };
+
+            var chart = new google.visualization.LineChart(
+                        document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+    </script>
+</head>
+<body>
+    <div id="chart_div" style="width: 900px; height: 1500px;">
+    </div>
+</body>
+</html>

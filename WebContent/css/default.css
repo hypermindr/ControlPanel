@@ -1,0 +1,124 @@
+#s� nao colocar no menu e login
+
+html{
+	height:100%
+}
+
+html,body {
+	margin:0;padding:0;
+	margin-top:10px;
+	background-color:#FFFFFF;
+	font-family:Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#222222;
+}
+
+a {
+	color:#00BB66; 
+	text-decoration:none;
+	font-weight:bold;
+}
+
+a:hover {
+	color:#00BB66; 
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+.titulo{
+	font-size:18px;
+	font-weight:bolder;
+	margin-left:20px;
+	margin-top:20px;
+	margin-bottom:30px;
+	border-bottom:3px solid #00BB66;
+	color:#00BB66;
+}
+
+.label{
+	font-weight:bolder;
+        font-size:14px
+	}
+
+.conteudo{
+	margin-left:30px;
+	margin-right:30px;
+}
+
+input {
+	border: 1px #444444  solid;
+}
+
+.inputbusca{
+	width:300px;
+}
+
+.selectbusca{
+	width:100px;
+}
+
+.busca{
+	vertical-align:middle;
+	margin-bottom:30px;
+	width:100%;
+	background-color:#F4F4F4;
+	padding-top:10px;
+	padding-left:15px;
+	padding-bottom:10px;
+	padding-right:15px;
+}
+
+.buscamsg{
+	vertical-align:middle;
+	margin-top:-30px;
+	margin-bottom:30px;
+	width:100%;
+	background-color:#FBFBFB;
+	padding-top:10px;
+	padding-left:15px;
+	padding-bottom:10px;
+	padding-right:15px;
+	color:#444444;
+}
+
+.boxcinzaescuro{
+	background-color:#F4F4F4;
+	width:100%;
+	padding-top:10px;
+	padding-left:15px;
+	padding-bottom:10px;
+	padding-right:15px;
+}
+.boxcinzaclaro{
+	background-color:#FBFBFB;
+	width:100%;
+		padding-top:10px;
+	padding-left:15px;
+	padding-bottom:10px;
+	padding-right:15px;
+}
+
+.botao {
+	cursor: hand;
+	background-color:#00BB66;
+	border-style:groove;
+	border-width:2px;
+ 	font-size:12px;
+	font-weight:bolder;
+	color:#FFFFFF;
+}
+
+.imagemflutuante{
+	float: left;
+	right:0px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	margin-right: 10px
+}
+
+.textoVermelho2{
+	FONT-FAMILY:verdana, arial, helvetica, sans-serif;
+	color:red;
+	font-size:10px;
+}
